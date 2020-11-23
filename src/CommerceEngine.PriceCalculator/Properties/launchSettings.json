@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CommerceEngine.PriceCalculator": {
+      "commandName": "Project",
+      "commandLineArgs": "Apple"
+    }
+  }
+}
