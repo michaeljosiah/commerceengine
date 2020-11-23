@@ -45,12 +45,9 @@ namespace CommerceEngine.PriceCalculator
             Console.WriteLine($"Subtotal: £{basket.SubTotal}");
             var discountText = string.IsNullOrEmpty(basket.DiscountText)
                 ? "(No offers available)"
-                : $"{basket.DiscountText} : -{basket.DiscountAmount}";
+                : $"{basket.DiscountText} : -{basket.DiscountAmount:0.00}";
             Console.WriteLine($"{discountText}");
-            Console.WriteLine($"Total: £{basket.Total}");
-            
-
-
+            Console.WriteLine($"Total: £{basket.Total:0.00}");
         }
     }
 }

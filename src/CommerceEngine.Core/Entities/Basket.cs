@@ -54,10 +54,12 @@ namespace CommerceEngine.Core.Entities
                 }
             }
             
-            decimal amount = 0;
+            var amount = 0m;
             if (discount.DiscountType == DiscountType.AssignedToProduct)
             {
-                amount = discount.IsPercentage ? (discount.DiscountAmount /100) * 5 : discount.DiscountAmount;
+                var discountedProduct = this.Items.FirstOrDefault(x => x.ProductId == discount.ProductId);
+                if (discountedProduct == null) return;
+                amount = discount.IsPercentage ? (discount.DiscountAmount /100) * discountedProduct.Price : discount.DiscountAmount;
             }
 
             DiscountAmount = amount;

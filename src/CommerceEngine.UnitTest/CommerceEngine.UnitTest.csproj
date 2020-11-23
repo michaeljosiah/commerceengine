@@ -16,9 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ApplicationServiceTests\" />
-    <Folder Include="DomainTests\" />
     <Folder Include="Builders\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CommerceEngine.Core\CommerceEngine.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,7 +5,6 @@ using CommerceEngine.Application.Interfaces;
 using CommerceEngine.Application.Services;
 using CommerceEngine.Core.Validators;
 using CommerceEngine.Infrastructure.Data;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace CommerceEngine.PriceCalculator
 {
