@@ -18,9 +18,9 @@ namespace CommerceEngine.Core.Entities
 
         public Basket()
         {
-                
+            this.Id = Guid.NewGuid();
         }
-        public void AddItem(int productId, decimal price, int quantity = 1)
+        public void AddItem(Guid productId, decimal price, int quantity = 1)
         {
             if (Items.All(i => i.ProductId != productId))
             {

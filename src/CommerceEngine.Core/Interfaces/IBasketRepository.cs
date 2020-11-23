@@ -7,6 +7,7 @@ namespace CommerceEngine.Core.Interfaces
 {
     public interface IBasketRepository
     {
-        Basket GetBasketById(int basketId);
+        Basket GetBasketById(Guid basketId);
+        Basket Insert(Basket basket);
     }
 }

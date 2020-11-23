@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using CommerceEngine.Core.Entities;
 
 namespace CommerceEngine.Application.Interfaces
 {
     public interface IBasketService
     {
-        Task AddItemToBasket(int basketId, int productId, decimal price, int quantity = 1);
+        Basket CreateBasket();
+        void AddItemToBasket(Guid basketId, Guid productId, decimal price, int quantity = 1);
     }
 }

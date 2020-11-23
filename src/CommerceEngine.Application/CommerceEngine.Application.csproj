@@ -8,4 +8,8 @@
     <Folder Include="Model\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CommerceEngine.Core\CommerceEngine.Core.csproj" />
+  </ItemGroup>
+
 </Project>

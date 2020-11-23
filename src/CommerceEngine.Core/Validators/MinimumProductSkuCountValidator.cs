@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Cryptography;
 using CommerceEngine.Core.Entities;
 using CommerceEngine.Core.Interfaces;
 
@@ -12,12 +11,12 @@ namespace CommerceEngine.Core.Validators
 
         public bool IsValid(Basket basket, DiscountRule discountRule)
         {
-            if (basket.Items.All(x => x.ProductId != Convert.ToInt32(discountRule.RuleValue)))
+            if (basket.Items.All(x => x.ProductId != Guid.Parse(discountRule.RuleValue)))
             {
                 return false;
             }
 
-            var product = basket.Items.Find(x => x.ProductId == Convert.ToInt32(discountRule.RuleValue));
+            var product = basket.Items.Find(x => x.ProductId == Guid.Parse(discountRule.RuleValue));
             if (product.Quantity < Convert.ToInt32(discountRule.RuleValue2))
             {
                 return false;
