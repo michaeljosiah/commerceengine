@@ -12,11 +12,7 @@ namespace CommerceEngine.PriceCalculator
         private static IServiceProvider _serviceProvider;
         static void Main(string[] args)
         {
-            var tmpArgs = args.ToList();
-            foreach (var tmp in tmpArgs)
-            {
-                Console.WriteLine(tmp);
-            }
+            RegisterServices();
         }
 
         private static void RegisterServices()
