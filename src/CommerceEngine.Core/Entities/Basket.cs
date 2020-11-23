@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CommerceEngine.Core.Enums;
 using CommerceEngine.Core.Interfaces;
@@ -8,14 +9,17 @@ namespace CommerceEngine.Core.Entities
 {
     public class Basket : IAggregateRoot
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public decimal SubTotal { get; set; }
         public decimal Total { get; set; }
         public decimal DiscountAmount { get; set; }
         public string DiscountText { get; set; }
-
         public List<BasketItem> Items = new List<BasketItem>();
 
+        public Basket()
+        {
+                
+        }
         public void AddItem(int productId, decimal price, int quantity = 1)
         {
             if (Items.All(i => i.ProductId != productId))

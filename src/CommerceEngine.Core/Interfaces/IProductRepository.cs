@@ -8,6 +8,6 @@ namespace CommerceEngine.Core.Interfaces
     public interface IProductRepository
     {
         IEnumerable<Product> GetProducts();
-        Product GetProductById(int productId);
+        Product GetProductById(Guid productId);
     }
 }

@@ -22,33 +22,33 @@ namespace CommerceEngine.Infrastructure.Data
             {
                 new Discount
                 {
-                    Id = 1,
+                    Id = Guid.Parse("E1D078F9-322B-42A4-BA1B-8C761DF4ADA2") ,
                     DiscountAmount = 10,
                     DiscountType = Core.Enums.DiscountType.AssignedToProduct,
                     StartDate = DateTime.UtcNow,
                     EndDate = DateTime.Now.AddDays(7),
                     IsPercentage = true,
                     Name = "Apples 10% off",
-                    ProductId = 4
+                    ProductId = Guid.Parse("BE06C990-8162-4B6E-83FB-E1F835E627D2")
                 },
                 new Discount
                 {
-                    Id = 2,
+                    Id = Guid.Parse("F4AD16A0-AE90-42D8-9528-8D5FAE49B7D8"),
                     DiscountAmount = 10,
                     DiscountType = Core.Enums.DiscountType.AssignedToProduct,
                     StartDate = DateTime.UtcNow,
                     EndDate = DateTime.Now.AddDays(7),
                     IsPercentage = true,
                     Name = "Buy 2 cans of Bean and get 50% off loaf of bread",
-                    ProductId = 2,
+                    ProductId = Guid.Parse("532580DA-14CB-470B-B616-703E8451A3E8"),
                     DiscountRules =new List<DiscountRule>
                     {
                         new DiscountRule
                         {
                             RuleName = "MinimumProductSkuCount",
-                            DiscountId = 2,
-                            Id = 1,
-                            RuleValue = "1",
+                            DiscountId = Guid.Parse("F4AD16A0-AE90-42D8-9528-8D5FAE49B7D8"),
+                            Id = Guid.Parse("C93930FF-2419-4FC8-923B-F7E8FD3F4B64"),
+                            RuleValue = "BE06C990-8162-4B6E-83FB-E1F835E627D2",
                             RuleValue2 = "2"
                         }
                     }
