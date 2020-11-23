@@ -9,5 +9,6 @@ namespace CommerceEngine.Core.Interfaces
     {
         IEnumerable<Product> GetProducts();
         Product GetProductById(Guid productId);
+        Product GetProductByName(string productName);
     }
 }

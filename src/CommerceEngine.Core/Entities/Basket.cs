@@ -28,8 +28,11 @@ namespace CommerceEngine.Core.Entities
                 {
                     ProductId = productId,
                     Quantity = quantity,
-                    Price = price
+                    Price = price,
+                    BasketId = this.Id,
+                    Id = Guid.NewGuid()
                 });
+
                 CalculateTotals();
                 return;
             }

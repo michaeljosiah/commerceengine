@@ -26,6 +26,7 @@ namespace CommerceEngine.Application.Services
         {
             var basket = _basketRepository.GetBasketById(basketId);
             basket.AddItem(productId,price,quantity);
+
         }
 
         public void ApplyDiscounts(Guid basketId)

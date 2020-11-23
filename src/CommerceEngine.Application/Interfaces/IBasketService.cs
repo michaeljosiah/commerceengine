@@ -10,5 +10,6 @@ namespace CommerceEngine.Application.Interfaces
     {
         Basket CreateBasket();
         void AddItemToBasket(Guid basketId, Guid productId, decimal price, int quantity = 1);
+        void ApplyDiscounts(Guid basketId);
     }
 }

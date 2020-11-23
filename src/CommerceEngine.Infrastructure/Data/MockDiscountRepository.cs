@@ -29,7 +29,7 @@ namespace CommerceEngine.Infrastructure.Data
                     EndDate = DateTime.Now.AddDays(7),
                     IsPercentage = true,
                     Name = "Apples 10% off",
-                    ProductId = Guid.Parse("BE06C990-8162-4B6E-83FB-E1F835E627D2")
+                    ProductId = Guid.Parse("F93F6133-98EB-407B-9F4A-93ACEA13CCC0")
                 },
                 new Discount
                 {
