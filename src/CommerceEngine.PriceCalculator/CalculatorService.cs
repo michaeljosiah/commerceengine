@@ -20,8 +20,7 @@ namespace CommerceEngine.PriceCalculator
         public void Execute(string[] args)
         {
            var basket = _basketService.CreateBasket();
-           var productNames = args.ToList();
-           foreach (var productName in productNames)
+           foreach (var productName in args.ToList())
            {
                var product = _productRepository.GetProductByName(productName);
                var quantity = 1;
@@ -36,8 +35,6 @@ namespace CommerceEngine.PriceCalculator
            _basketService.ApplyDiscounts(basket.Id);
            PrintBasket(basket);
            Console.ReadLine();
-           //_basketService.AddItemToBasket(b);
-
         }
 
         private void PrintBasket(Basket basket)
