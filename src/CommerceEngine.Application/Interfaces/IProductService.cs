@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CommerceEngine.Core.Entities;
+﻿using CommerceEngine.Application.Model;
 
 namespace CommerceEngine.Application.Interfaces
 {
     public interface IProductService
     {
-        Product GetProductByName(string productName);
+        ProductDto GetProductByName(string productName);
     }
 }

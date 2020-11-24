@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CommerceEngine.Application.Interfaces;
-using CommerceEngine.Core.Entities;
+﻿using CommerceEngine.Application.Interfaces;
+using CommerceEngine.Application.Model;
 using CommerceEngine.Core.Interfaces;
 
 namespace CommerceEngine.Application.Services
@@ -15,9 +12,16 @@ namespace CommerceEngine.Application.Services
         {
             _productRepository = productRepository;
         }
-        public Product GetProductByName(string productName)
+        public ProductDto GetProductByName(string productName)
         {
-            return _productRepository.GetProductByName(productName);
+            var product = _productRepository.GetProductByName(productName);
+            return new ProductDto
+            {
+                Id = product.Id,
+                Price = product.Price,
+                ShortDescription = product.ShortDescription,
+                Name = product.Name
+            };
         }
     }
 }

@@ -22,6 +22,25 @@ namespace CommerceEngine.Application.Services
         {
             var basket = new Basket();
             _basketRepository.Insert(basket);
+            return MapBasketToBasketDto(basket);
+        }
+        public BasketDto AddItemToBasket(Guid basketId, Guid productId, decimal price, int quantity = 1)
+        {
+            var basket = _basketRepository.GetBasketById(basketId);
+            basket.AddItem(productId,price,quantity);
+            return MapBasketToBasketDto(basket);
+        }
+
+        public BasketDto ApplyDiscounts(Guid basketId)
+        {
+            var basket = _basketRepository.GetBasketById(basketId);
+            var discounts = _discountRepository.GetAvailabileDiscounts(DateTime.Now, DateTime.Now.AddDays(7));
+            if(discounts.Any()) basket.ApplyDiscount(discounts.First());
+            return MapBasketToBasketDto(basket);
+        }
+
+        private BasketDto MapBasketToBasketDto(Basket basket)
+        {
             return new BasketDto
             {
                 Id = basket.Id,
@@ -37,21 +56,7 @@ namespace CommerceEngine.Application.Services
                     BasketId = item.BasketId,
                     Id = item.Id
                 }).ToList()
-
             };
-        }
-        public void AddItemToBasket(Guid basketId, Guid productId, decimal price, int quantity = 1)
-        {
-            var basket = _basketRepository.GetBasketById(basketId);
-            basket.AddItem(productId,price,quantity);
-
-        }
-
-        public void ApplyDiscounts(Guid basketId)
-        {
-            var basket = _basketRepository.GetBasketById(basketId);
-            var discounts = _discountRepository.GetAvailabileDiscounts(DateTime.Now, DateTime.Now.AddDays(7));
-            if(discounts.Any()) basket.ApplyDiscount(discounts.First());
         }
 
     }

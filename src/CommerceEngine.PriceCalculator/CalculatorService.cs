@@ -2,9 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
 using CommerceEngine.Application.Model;
-using CommerceEngine.Core.Interfaces;
 
 namespace CommerceEngine.PriceCalculator
 {
@@ -27,16 +25,16 @@ namespace CommerceEngine.PriceCalculator
            {
                var quantity = 1;
                if (product.Name.Equals("Beans")) quantity = 2;
-               _basketService.AddItemToBasket(basket.Id,product.Id,product.Price,quantity);
+               basket = _basketService.AddItemToBasket(basket.Id,product.Id,product.Price,quantity);
            }
-           _basketService.ApplyDiscounts(basket.Id);
+           basket = _basketService.ApplyDiscounts(basket.Id);
            PrintBasket(basket);
            Console.ReadLine();
         }
 
-        private IEnumerable<Product> GetProductsByNames(string[] productNames)
+        private IEnumerable<ProductDto> GetProductsByNames(string[] productNames)
         {
-            var products = new List<Product>();
+            var products = new List<ProductDto>();
             foreach (var productName in productNames.ToList())
             {
                 var product = _productService.GetProductByName(productName);
