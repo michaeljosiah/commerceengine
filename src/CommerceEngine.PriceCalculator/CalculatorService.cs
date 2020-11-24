@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
-using CommerceEngine.Core.Entities;
+using CommerceEngine.Application.Model;
 using CommerceEngine.Core.Interfaces;
 
 namespace CommerceEngine.PriceCalculator
@@ -50,7 +50,7 @@ namespace CommerceEngine.PriceCalculator
             return products;
         }
 
-        private void PrintBasket(Basket basket)
+        private void PrintBasket(BasketDto basket)
         {
             Console.WriteLine($"Subtotal: £{basket.SubTotal}");
             var discountText = string.IsNullOrEmpty(basket.DiscountText)

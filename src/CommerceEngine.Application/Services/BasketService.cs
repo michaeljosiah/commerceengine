@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CommerceEngine.Application.Interfaces;
+using CommerceEngine.Application.Model;
 using CommerceEngine.Core.Entities;
 using CommerceEngine.Core.Interfaces;
 
@@ -16,11 +18,27 @@ namespace CommerceEngine.Application.Services
             _basketRepository = basketRepository;
             _discountRepository = discountRepository;
         }
-        public Basket CreateBasket()
+        public BasketDto CreateBasket()
         {
             var basket = new Basket();
             _basketRepository.Insert(basket);
-            return basket;
+            return new BasketDto
+            {
+                Id = basket.Id,
+                DiscountAmount = basket.DiscountAmount,
+                SubTotal = basket.SubTotal,
+                DiscountText = basket.DiscountText,
+                Total = basket.Total,
+                Items = basket.Items.Select(item => new BasketItemDto
+                {
+                    ProductId = item.ProductId,
+                    Price = item.Price,
+                    Quantity = item.Quantity,
+                    BasketId = item.BasketId,
+                    Id = item.Id
+                }).ToList()
+
+            };
         }
         public void AddItemToBasket(Guid basketId, Guid productId, decimal price, int quantity = 1)
         {
