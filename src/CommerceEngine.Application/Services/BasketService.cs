@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CommerceEngine.Application.Exceptions;
 using CommerceEngine.Application.Interfaces;
 using CommerceEngine.Application.Model;
 using CommerceEngine.Core.Entities;
@@ -27,6 +28,8 @@ namespace CommerceEngine.Application.Services
         public BasketDto AddItemToBasket(Guid basketId, Guid productId, decimal price, int quantity = 1)
         {
             var basket = _basketRepository.GetBasketById(basketId);
+            if(basket == null)throw new BasketNotFoundException(basketId.ToString());
+
             basket.AddItem(productId,price,quantity);
             return MapBasketToBasketDto(basket);
         }
@@ -34,6 +37,8 @@ namespace CommerceEngine.Application.Services
         public BasketDto ApplyDiscounts(Guid basketId)
         {
             var basket = _basketRepository.GetBasketById(basketId);
+            if (basket == null) throw new BasketNotFoundException(basketId.ToString());
+
             var discounts = _discountRepository.GetAvailabileDiscounts(DateTime.Now, DateTime.Now.AddDays(7));
             if(discounts.Any()) basket.ApplyDiscount(discounts.First());
             return MapBasketToBasketDto(basket);

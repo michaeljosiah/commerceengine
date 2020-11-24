@@ -20,7 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CommerceEngine.Application\CommerceEngine.Application.csproj" />
     <ProjectReference Include="..\CommerceEngine.Core\CommerceEngine.Core.csproj" />
+    <ProjectReference Include="..\CommerceEngine.Infrastructure\CommerceEngine.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
