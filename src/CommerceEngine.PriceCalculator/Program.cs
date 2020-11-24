@@ -26,6 +26,7 @@ namespace CommerceEngine.PriceCalculator
             services.AddScoped<CalculatorService>();
             services.AddSingleton<IDiscountRepository, MockDiscountRepository>();
             services.AddSingleton<IBasketRepository, MockBasketRepository>();
+            services.AddSingleton<IProductService, ProductService>();
             services.AddSingleton<IProductRepository, MockProductRepository>();
             _serviceProvider = services.BuildServiceProvider();
         }
