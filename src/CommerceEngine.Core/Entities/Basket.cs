@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CommerceEngine.Core.Enums;
+using CommerceEngine.Core.Exceptions;
 using CommerceEngine.Core.Interfaces;
 using CommerceEngine.Shared.Extensions;
 
@@ -71,6 +72,13 @@ namespace CommerceEngine.Core.Entities
         {
             SubTotal = Items.Sum(x => x.Price * x.Quantity);
             Total = SubTotal - DiscountAmount;
+        }
+
+        public void DeleteBasketItem(Guid basketItemId)
+        {
+            var item = Items.FirstOrDefault(x => x.Id == basketItemId);
+            if (item == null) throw new BasketItemNotFoundException(basketItemId.ToString());
+            Items.Remove(item);
         }
     }
 }
