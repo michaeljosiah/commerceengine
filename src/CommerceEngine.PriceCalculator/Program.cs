@@ -13,6 +13,13 @@ namespace CommerceEngine.PriceCalculator
         private static IServiceProvider _serviceProvider;
         static void Main(string[] args)
         {
+            if (args.Length == 0)
+            {
+                Console.WriteLine("Please supply the correct parameters e.g. PriceCalculator Apples Milk Bread.");
+                Console.WriteLine("Press Enter to quit the application");
+                Console.ReadLine();
+                return;
+            }
             RegisterServices();
             var calculatorService = (CalculatorService)_serviceProvider.GetService(typeof(CalculatorService));
             calculatorService.Execute(args);

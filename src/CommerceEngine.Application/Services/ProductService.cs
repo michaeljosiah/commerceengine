@@ -1,4 +1,5 @@
-﻿using CommerceEngine.Application.Interfaces;
+﻿using System;
+using CommerceEngine.Application.Interfaces;
 using CommerceEngine.Application.Model;
 using CommerceEngine.Core.Interfaces;
 
@@ -15,6 +16,8 @@ namespace CommerceEngine.Application.Services
         public ProductDto GetProductByName(string productName)
         {
             var product = _productRepository.GetProductByName(productName);
+            if (product == null) throw new Exception($"Product name {productName} not found.");
+
             return new ProductDto
             {
                 Id = product.Id,
