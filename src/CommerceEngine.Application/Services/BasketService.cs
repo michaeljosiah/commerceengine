@@ -40,7 +40,7 @@ namespace CommerceEngine.Application.Services
             if (basket == null) throw new BasketNotFoundException(basketId.ToString());
 
             var discounts = _discountRepository.GetAvailabileDiscounts(DateTime.Now, DateTime.Now.AddDays(7));
-            if(discounts.Any()) basket.ApplyDiscount(discounts.First());
+            if(discounts.Any()) basket.ApplyDiscount(discounts);
             return MapBasketToBasketDto(basket);
         }
 

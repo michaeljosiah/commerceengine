@@ -34,7 +34,7 @@ namespace CommerceEngine.Infrastructure.Data
                 new Discount
                 {
                     Id = Guid.Parse("F4AD16A0-AE90-42D8-9528-8D5FAE49B7D8"),
-                    DiscountAmount = 10,
+                    DiscountAmount = 50,
                     DiscountType = Core.Enums.DiscountType.AssignedToProduct,
                     StartDate = DateTime.UtcNow,
                     EndDate = DateTime.Now.AddDays(7),

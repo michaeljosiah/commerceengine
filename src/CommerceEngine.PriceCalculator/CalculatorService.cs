@@ -23,9 +23,7 @@ namespace CommerceEngine.PriceCalculator
            var products = GetProductsByNames(args);
            foreach (var product in products)
            {
-               var quantity = 1;
-               if (product.Name.Equals("Beans")) quantity = 2;
-               basket = _basketService.AddItemToBasket(basket.Id,product.Id,product.Price,quantity);
+               basket = _basketService.AddItemToBasket(basket.Id,product.Id,product.Price,1);
            }
            basket = _basketService.ApplyDiscounts(basket.Id);
            PrintBasket(basket);

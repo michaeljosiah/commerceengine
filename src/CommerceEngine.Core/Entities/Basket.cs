@@ -43,28 +43,32 @@ namespace CommerceEngine.Core.Entities
         }
 
 
-        public void ApplyDiscount(Discount discount)
+        public void ApplyDiscount(List<Discount> discounts)
         {
-            if (discount.DiscountRules.Any())
+            foreach (var discount in discounts)
             {
-                foreach (var discountRule in discount.DiscountRules)
+                if (discount.DiscountRules.Any())
                 {
-                    var validator = DiscountRuleValidatorFactory.GetDiscountRuleValidator(discountRule.RuleName.ToEnum<DiscountRuleType>());
-                    var result = validator.IsValid(this,discountRule);
-                    if (result == false) return;
+                    var validDiscountRule = true;
+                    foreach (var discountRule in discount.DiscountRules)
+                    {
+                        var validator = DiscountRuleValidatorFactory.GetDiscountRuleValidator(discountRule.RuleName.ToEnum<DiscountRuleType>());
+                        validDiscountRule = validator.IsValid(this, discountRule);
+                    }
+                    if (!validDiscountRule)continue;
                 }
+                
+                var amount = 0m;
+                if (discount.DiscountType == DiscountType.AssignedToProduct)
+                {
+                    var discountedProduct = this.Items.FirstOrDefault(x => x.ProductId == discount.ProductId);
+                    if (discountedProduct == null) continue;
+                    amount = discount.IsPercentage ? (discount.DiscountAmount / 100) * discountedProduct.Price : discount.DiscountAmount;
+                }
+                DiscountAmount += amount;
+                DiscountText = discount.Name;
             }
             
-            var amount = 0m;
-            if (discount.DiscountType == DiscountType.AssignedToProduct)
-            {
-                var discountedProduct = this.Items.FirstOrDefault(x => x.ProductId == discount.ProductId);
-                if (discountedProduct == null) return;
-                amount = discount.IsPercentage ? (discount.DiscountAmount /100) * discountedProduct.Price : discount.DiscountAmount;
-            }
-
-            DiscountAmount = amount;
-            DiscountText = discount.Name;
             CalculateTotals();
         }
 

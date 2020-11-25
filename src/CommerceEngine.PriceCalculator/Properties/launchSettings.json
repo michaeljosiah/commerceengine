@@ -2,7 +2,7 @@
   "profiles": {
     "CommerceEngine.PriceCalculator": {
       "commandName": "Project",
-      "commandLineArgs": "Apples Beans Bread Milk"
+      "commandLineArgs": "Beans Beans Bread"
     }
   }
 }
