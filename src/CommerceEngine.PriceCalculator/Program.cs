@@ -22,7 +22,17 @@ namespace CommerceEngine.PriceCalculator
             }
             RegisterServices();
             var calculatorService = (CalculatorService)_serviceProvider.GetService(typeof(CalculatorService));
-            calculatorService.Execute(args);
+
+            try
+            {
+                calculatorService.Execute(args);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
         }
 
         private static void RegisterServices()
