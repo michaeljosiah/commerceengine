@@ -1,5 +1,5 @@
 # commerceengine
-Programming Challenge: Price Calculator for Shopping Basket
+Programming Challenge: Price Calculator for Shopping Basket (edited)
 
 Expectation
 -	Produce working, object-oriented source code to solve the following problems
